@@ -30,7 +30,6 @@ public class PatientController {
         return patientServices.findById(id);
     }
 
-
     @DeleteMapping("/delete/{id}")
     public void deletePatient(@PathVariable Integer id) {
         PatientEntity patient = patientServices.findById(id);

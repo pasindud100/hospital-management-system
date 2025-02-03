@@ -1,23 +1,21 @@
 package com.example.demo.entities;
 
 /* Author : pasindu
- place: ACPT student*/
+   Place: ACPT student */
 
 import jakarta.persistence.*;
 
-@Entity //to identify this class as a entity
-@Table(name="patient_data") //to spesify table name
+@Entity
+@Table(name = "patient_data")
 public class PatientEntity {
 
-    @Id //mark as a primary key
-    @GeneratedValue(strategy = GenerationType.AUTO) // it support to auto increment id
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
-    @Column (name = "fname") //specify column names
+    // Retaining first name field only (last name removed)
+    @Column(name = "fname")
     private String fname;
-
-    @Column(name = "lname")
-    private String lname;
 
     @Column(name = "gender")
     private String gender;
@@ -25,17 +23,24 @@ public class PatientEntity {
     @Column(name = "age")
     private int age;
 
+    // New field for address
+    @Column(name = "address")
+    private String address;
 
+    // New field for current diagnosis or the current logged disease information
+    @Column(name = "current_diagnosis")
+    private String currentDiagnosis;
 
+    // New field for telephone (instead of email)
+    @Column(name = "telephone")
+    private String telephone;
 
-    //constructor
+    // Default constructor (required by JPA)
     public PatientEntity() {
-
     }
 
+    // Getters and Setters
 
-
-    //getters and setters
     public int getId() {
         return id;
     }
@@ -52,14 +57,6 @@ public class PatientEntity {
         this.fname = fname;
     }
 
-    public String getLname() {
-        return lname;
-    }
-
-    public void setLname(String lname) {
-        this.lname = lname;
-    }
-
     public String getGender() {
         return gender;
     }
@@ -74,5 +71,29 @@ public class PatientEntity {
 
     public void setAge(int age) {
         this.age = age;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getCurrentDiagnosis() {
+        return currentDiagnosis;
+    }
+
+    public void setCurrentDiagnosis(String currentDiagnosis) {
+        this.currentDiagnosis = currentDiagnosis;
+    }
+
+    public String getTelephone() {
+        return telephone;
+    }
+
+    public void setTelephone(String telephone) {
+        this.telephone = telephone;
     }
 }
