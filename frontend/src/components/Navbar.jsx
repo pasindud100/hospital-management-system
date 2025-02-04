@@ -1,17 +1,9 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   return (
-    <nav className="bg-white shadow p-4 flex justify-between items-center">
-      <div className="text-2xl font-bold text-blue-600">
-        SVD Hospital
-      </div>
-      <div>
-        <Link to="/patients" className="text-gray-700 hover:text-blue-600 px-4">
-          Patients
-        </Link>
-      </div>
+    <nav className="bg-blue-600 p-4 flex justify-between items-center text-white">
+      <h1 className="text-xl font-bold">SVD Hospital</h1>
     </nav>
   );
 };

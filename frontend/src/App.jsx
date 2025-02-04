@@ -1,22 +1,10 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Navbar from './components/Navbar';
-import Patients from './pages/Patients';
+import { BrowserRouter } from "react-router-dom";
+import Navbar from "./components/Navbar";
 
-function App() {
-  return (
-    <Router>
-      <div>
-        <Navbar />
-        <div className="container mx-auto mt-6">
-          <Routes>
-            <Route path="/" element={<Patients />} />
-            <Route path="/patients" element={<Patients />} />
-          </Routes>
-        </div>
-      </div>
-    </Router>
-  );
-}
+const App = () => (
+  <BrowserRouter>
+    <Navbar />
+  </BrowserRouter>
+);
 
 export default App;
