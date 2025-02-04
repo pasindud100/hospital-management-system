@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/patient")
-@CrossOrigin(origins = "http://localhost:5173")
+@CrossOrigin("*")
 public class PatientController {
 
     @Autowired
@@ -17,7 +17,6 @@ public class PatientController {
     public PatientEntity addOrUpdatePatient(@RequestBody PatientEntity patient) {
         return patientServices.add(patient);
     }
-
 
     @PutMapping("/update/{id}")
     public PatientEntity updatePatient(@PathVariable Integer id, @RequestBody PatientEntity patient) {

@@ -6,7 +6,7 @@ package com.example.demo.entities;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "patient_data")
+@Table(name = "patients_data")
 public class PatientEntity {
 
     @Id
