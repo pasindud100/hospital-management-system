@@ -1,31 +1,59 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 
-const PatientModal = ({ closeModal, patient })=>{
-  const [formData, setFormData] = useState({
-    fname: patient?.fname || "",
-    gender: patient?.gender || "",
-    age: patient?.age || "",
-    address: patient?.address || "",
-    currentDiagnosis: patient?.currentDiagnosis || "",
-    telephone: patient?.telephone || "",
-  });
+const PatientModal = ({ closeModal, patient }) => {
+  const [id, setId] = useState("");
+  const [fname, setFname] = useState("");
+  const [gender, setGender] = useState("");
+  const [age, setAge] = useState("");
+  const [address, setAddress] = useState("");
+  const [currentDiagnosis, setCurrentDiagnosis] = useState("");
+  const [telephone, setTelephone] = useState("");
 
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
+  useEffect(() => {
+    if (patient) {
+      setId(patient.id);
+      setFname(patient.fname);
+      setGender(patient.gender);
+      setAge(patient.age);
+      setAddress(patient.address);
+      setCurrentDiagnosis(patient.currentDiagnosis);
+      setTelephone(patient.telephone);
+    } else {
+      setId("");
+      setFname("");
+      setGender("");
+      setAge("");
+      setAddress("");
+      setCurrentDiagnosis("");
+      setTelephone("");
+    }
+  }, [patient]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try{
-      await axios.post("http://localhost:8080/patient/add", formData);
+    const formData = {
+      id,
+      fname,
+      gender,
+      age,
+      address,
+      currentDiagnosis,
+      telephone,
+    };
+    try {
+      if (id) {
+        await axios.put(`http://localhost:8080/patient/update/${id}`, formData);
+      } else {
+        await axios.post("http://localhost:8080/patient/add", formData);
+      }
       closeModal();
-    }catch(error){
+    } catch (error) {
       console.error("Error saving patient:", error);
     }
   };
 
-  return(
+  return (
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
       <div className="bg-white p-6 rounded-lg">
         <h2 className="text-xl font-bold">
@@ -34,57 +62,56 @@ const PatientModal = ({ closeModal, patient })=>{
         <form onSubmit={handleSubmit}>
           <input
             type="text"
-            name="fname"
-            value={formData.fname}
-            onChange={handleChange}
-            placeholder="Full Name"
+            value={fname}
+            onChange={(e) => setFname(e.target.value)}
+            placeholder="First Name"
+            required
             className="border p-2 w-full mb-2"
           />
-          <select
-            name="gender"
-            value={formData.gender}
-            onChange={handleChange}
+          <input
+            type="text"
+            value={gender}
+            onChange={(e) => setGender(e.target.value)}
+            placeholder="Gender"
+            required
             className="border p-2 w-full mb-2"
-          >
-            <option value="">Select Gender</option>
-            <option value="Male">Male</option>
-            <option value="Female">Female</option>
-            <option value="Other">Other</option>
-          </select>
+          />
           <input
             type="number"
-            name="age"
-            value={formData.age}
-            onChange={handleChange}
+            value={age}
+            onChange={(e) => setAge(e.target.value)}
             placeholder="Age"
+            required
             className="border p-2 w-full mb-2"
-            min="0"
           />
           <input
             type="text"
-            name="address"
-            value={formData.address}
-            onChange={handleChange}
+            value={address}
+            onChange={(e) => setAddress(e.target.value)}
             placeholder="Address"
+            required
             className="border p-2 w-full mb-2"
           />
           <input
             type="text"
-            name="currentDiagnosis"
-            value={formData.currentDiagnosis}
-            onChange={handleChange}
+            value={currentDiagnosis}
+            onChange={(e) => setCurrentDiagnosis(e.target.value)}
             placeholder="Current Diagnosis"
+            required
             className="border p-2 w-full mb-2"
           />
           <input
-            type="tel"
-            name="telephone"
-            value={formData.telephone}
-            onChange={handleChange}
+            type="text"
+            value={telephone}
+            onChange={(e) => setTelephone(e.target.value)}
             placeholder="Telephone"
+            required
             className="border p-2 w-full mb-2"
           />
-          <button type="submit" className="bg-green-500 text-white px-4 py-2 rounded">
+          <button
+            type="submit"
+            className="bg-green-500 text-white px-4 py-2 rounded"
+          >
             Save
           </button>
           <button
