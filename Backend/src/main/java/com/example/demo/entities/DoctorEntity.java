@@ -1,8 +1,5 @@
 package com.example.demo.entities;
 
-/* Author: Pasindu
-   Place: ACPT Student */
-
 import jakarta.persistence.*;
 
 @Entity
@@ -12,7 +9,6 @@ public class DoctorEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-
     private String name;
     private String specialization;
     private String govermentHospital;
@@ -21,9 +17,7 @@ public class DoctorEntity {
 
     public DoctorEntity(){
 
-
     }
-
     public DoctorEntity(String name, String specialization, String govermentHospital, String phone, String address) {
         this.name = name;
         this.specialization = specialization;

@@ -1,12 +1,11 @@
 package com.example.demo.services;
 
-/* Author : pasindu
- place: ACPT student*/
-
 import com.example.demo.Repositories.PatientRepository;
 import com.example.demo.entities.PatientEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class PatientServices {
@@ -18,8 +17,9 @@ public class PatientServices {
         return patientRepository.save(patient);
     }
 
-    public Iterable<PatientEntity> findAll() {
-        return patientRepository.findAll();
+    public List<PatientEntity> findAll() {
+       List<PatientEntity> patients = (List<PatientEntity>) patientRepository.findAll();
+        return patients;
     }
 
     public PatientEntity findById(Integer id) {

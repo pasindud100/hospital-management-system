@@ -1,8 +1,5 @@
 package com.example.demo.entities;
 
-/* Author : pasindu
-   Place: ACPT student */
-
 import jakarta.persistence.*;
 
 @Entity
@@ -31,14 +28,9 @@ public class PatientEntity {
     @Column(name = "telephone")
     private String telephone;
 
-
-
     public PatientEntity() {
     }
 
-
-
-    // Getters and Setters
     public int getId() {
         return id;
     }

@@ -1,9 +1,5 @@
 package com.example.demo.Repositories;
 
-/* Author : pasindu
- place: ACPT student*/
-
-
 import com.example.demo.entities.PatientEntity;
 import org.springframework.data.repository.CrudRepository;
 

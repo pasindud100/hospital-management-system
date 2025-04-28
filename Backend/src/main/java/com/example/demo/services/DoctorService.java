@@ -5,7 +5,7 @@ import com.example.demo.Repositories.DoctorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
+import java.util.List;
 
 @Service
 public class DoctorService{
@@ -19,7 +19,7 @@ public class DoctorService{
     }
 
     // for get all doctors
-    public Iterable<DoctorEntity> findAll() {
+    public List<DoctorEntity> findAll() {
         return doctorRepository.findAll();
     }
 

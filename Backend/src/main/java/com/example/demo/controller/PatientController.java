@@ -3,7 +3,10 @@ package com.example.demo.controller;
 import com.example.demo.entities.PatientEntity;
 import com.example.demo.services.PatientServices;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/patient")
@@ -14,8 +17,9 @@ public class PatientController {
     private PatientServices patientServices;
 
     @PostMapping("/add")
-    public PatientEntity addOrUpdatePatient(@RequestBody PatientEntity patient) {
-        return patientServices.add(patient);
+    public ResponseEntity<PatientEntity> addOrUpdatePatient(@RequestBody PatientEntity patient) {
+        PatientEntity savedPatient = patientServices.add(patient);
+        return ResponseEntity.ok(savedPatient);
     }
 
     @PutMapping("/update/{id}")
@@ -37,8 +41,9 @@ public class PatientController {
     }
 
     @GetMapping("/all")
-    public Iterable<PatientEntity> findAllPatient() {
-        return patientServices.findAll();
+    public ResponseEntity<List<PatientEntity>> findAllPatient() {
+        List<PatientEntity> patients = patientServices.findAll();
+        return ResponseEntity.ok(patients);
     }
 
     @GetMapping("/find/{id}")
